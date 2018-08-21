@@ -6,11 +6,6 @@ else()
    project(bulk VERSION 0.0.1)
 endif()
 
-configure_file(version.h.in ${PROJECT_SOURCE_DIR}/version.h)
-
-set(CMAKE_CXX_STANDARD 14)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
 set(INCLUDE_DIR ${PROJECT_SOURCE_DIR}/include)
 set(SRC_DIR ${PROJECT_SOURCE_DIR}/src)
 
@@ -19,17 +14,20 @@ file(GLOB SRC_FILES		${SRC_DIR}/*.cpp)
 
 add_executable(bulk ${HEADER_FILES} ${SRC_FILES})
 
-if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
-	set_target_properties(bulk PROPERTIES
-		COMPILE_OPTIONS -Wpedantic -Wall -Wextra
-		INCLUDE_DIRECTORIES ${INCLUDE_DIR}
-	)
-elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
-	set_target_properties(bulk PROPERTIES
-		COMPILE_OPTIONS -W3 
-		INCLUDE_DIRECTORIES ${INCLUDE_DIR}
-	)
+set_target_properties(bulk PROPERTIES
+	CXX_STANDARD 14
+	CXX_STANDARD_REQUIRED ON
+	INCLUDE_DIRECTORIES ${INCLUDE_DIR}
+)
+
+if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
+	set_target_properties(bulk PROPERTIES COMPILE_OPTIONS -W3)
+else()
+	set_target_properties(bulk PROPERTIES COMPILE_OPTIONS -Wpedantic -Wall -Wextra)
 endif()
+
+enable_testing()
+add_subdirectory(test)
 
 install(TARGETS bulk RUNTIME DESTINATION bin)
 
