@@ -2,11 +2,15 @@
 
 #include "data_reader.h"
 
-int main(int, char *[])
+int main(int argc, char const *argv[])
 {
 	try
 	{
-		bulk_handler handler(3);
+		if (argc < 2) return 1;
+
+		int num_commands = atoi(argv[1]);
+
+		bulk_handler handler(num_commands);
 		data_reader reader(std::cin, &handler);
 		reader.Perform();
 	}
