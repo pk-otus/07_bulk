@@ -6,7 +6,11 @@ int main(int argc, char const *argv[])
 {
 	try
 	{
-		if (argc < 2) return 1;
+		if (argc < 2)
+		{
+			std::cout << "Usage:\nbulk <num>\nParameters: \n<num>: number of packed commands\n";
+			return 1;
+		}
 
 		int num_commands = atoi(argv[1]);
 
