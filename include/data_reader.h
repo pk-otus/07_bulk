@@ -12,10 +12,11 @@ public:
 
 	void Perform() const
 	{
-		auto strCmd = std::string();
 		while (!input_stream.eof())
 		{
+			auto strCmd = std::string();
 			input_stream >> strCmd;
+			if (strCmd.empty()) continue;
 			single_observer->NewCommandReceived(strCmd);
 		}
 		single_observer->TryFlush();
