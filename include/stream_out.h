@@ -4,7 +4,7 @@
 
 #include "commands_block.h"
 
-class IStreamOut abstract
+class IStreamOut 
 {
 public:
 	virtual ~IStreamOut() = default;
