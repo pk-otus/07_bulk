@@ -3,14 +3,13 @@
 
 #include "data_reader.h"
 
-
 std::string GetTestResult(size_t test_number, int test_bulk_size)
 {
 	std::ifstream file_in("in" + std::to_string(test_number) + ".txt", std::ofstream::in);
 
 	testing::internal::CaptureStdout();
 
-	data_reader reader(test_bulk_size);
+	bulk::data_reader reader(test_bulk_size);
 	reader.Perform(file_in);
 
 	std::string output = testing::internal::GetCapturedStdout();
