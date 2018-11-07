@@ -6,7 +6,7 @@ namespace bulk
 	class data_reader : special_command_handler
 	{
 	public:
-		data_reader(size_t num_commands) :
+		explicit data_reader(size_t num_commands) :
 			special_command_handler(num_commands),
 			commands(nullptr) {}
 

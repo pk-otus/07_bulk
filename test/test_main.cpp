@@ -63,8 +63,3 @@ TEST(BulkTest, BulkTest5)
 	ASSERT_EQ(tested, control);
 }
 
-int main(int argc, char** argv)
-{
-	::testing::InitGoogleTest(&argc, argv);
-	return RUN_ALL_TESTS();
-}

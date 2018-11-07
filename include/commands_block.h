@@ -17,7 +17,7 @@ namespace bulk
 
 		virtual ~commands_block() = default;
 
-		std::string GetLogFileName() const
+		std::string GetLogFileName() const noexcept
 		{
 			return "bulk" + std::to_string(tm_created) + ".log";
 		}
@@ -45,7 +45,7 @@ namespace bulk
 			pool_commands.push_back(cmd);
 		}
 
-		size_t CommandsCount() const { return pool_commands.size(); }
+		size_t CommandsCount() const noexcept { return pool_commands.size(); }
 
 	private:
 		const time_t				tm_created;
